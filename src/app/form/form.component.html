@@ -1,0 +1,36 @@
+<div *ngIf="!post; else forminfo">
+  <form [formGroup]="rForm" (ngSubmit)="addPost(rForm.value)">
+    <div class="form-container">
+      <h1>LOGIN</h1>
+
+    <md-input-container class="full-width"  color="warm">
+      <input mdInput placeholder="User" formControlName="name">
+      <md-error>
+        {{nameAlert}}
+      </md-error>
+    </md-input-container>
+
+    <md-input-container class="full-width">
+      <input mdInput placeholder="Password" formControlName="password" type="password">
+      <md-error>
+        {{passAlert}}
+      </md-error>
+    </md-input-container>
+      <div class="opt-container">
+        <md-checkbox formControlName="keep">Keep me logged in</md-checkbox>
+         <span class="example-spacer"></span>
+        <button md-button disableRipple (ngSubmit)="addPost(rForm.value)" [disabled]="!rForm.valid" [class.valid]="rForm.valid">LOGIN</button>
+      </div>
+      <div class="opt-container">
+        <a href="">Forgot your password?</a>
+      </div>
+    </div>
+  </form>
+</div>
+<ng-template #forminfo>
+  <div class="form-information">
+    <h2>Post Information</h2>
+
+    {{post | json}}
+  </div>
+</ng-template>
